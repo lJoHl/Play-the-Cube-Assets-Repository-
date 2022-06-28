@@ -4,6 +4,8 @@ public class Cube : MonoBehaviour
 {
     private GameManager gameManager;
 
+    private AudioSource cubeAudio;
+
     private MeshRenderer Renderer;
     private Material material;
 
@@ -27,6 +29,8 @@ public class Cube : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        cubeAudio = GetComponent<AudioSource>();
 
         Renderer = GetComponent<MeshRenderer>();
         material = Renderer.material;
@@ -67,7 +71,11 @@ public class Cube : MonoBehaviour
     private void OnMouseDown()
     {
         if (mode == 1 | mode == 3)
+        {
             UpdateTransform();
+
+            PlayCubeAudio();
+        }
 
         gameManager.UpdateCaught(1);
     }
@@ -76,7 +84,11 @@ public class Cube : MonoBehaviour
     private void OnMouseOver()
     {
         if (mode == 2)
+        {
             UpdateTransform();
+
+            PlayCubeAudio();
+        }
     }
 
 
@@ -118,5 +130,12 @@ public class Cube : MonoBehaviour
     {
         transform.position = startPosition;
         transform.localScale = startScale;
+    }
+
+
+    private void PlayCubeAudio()
+    {
+        if (gameManager.isGameActive)
+            cubeAudio.Play();
     }
 }
