@@ -59,6 +59,9 @@ public class Cube : MonoBehaviour
 
             changeColorCounter -= Time.deltaTime;
         }
+
+        if (!gameManager.isGameActive)
+            mode = 0;
     }
 
 

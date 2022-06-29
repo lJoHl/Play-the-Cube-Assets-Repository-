@@ -96,5 +96,7 @@ public class GameManager : MonoBehaviour
         mode3FinalScreen.SetActive(false);
 
         cube.OriginalTransform();
+
+        GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
     }
 }
